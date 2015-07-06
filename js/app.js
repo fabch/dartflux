@@ -1,7 +1,7 @@
 var React = require('react');
-var DartApp = require('./components/DartboardApp.react');
+var DartboardApp = require('./components/DartboardApp.react');
 
 React.render(
-  <DartApp />,
+  <DartboardApp />,
   document.getElementById('dartboardapp')
 );

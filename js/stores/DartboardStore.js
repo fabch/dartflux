@@ -29,12 +29,13 @@ function createPlayer(name) {
 function destroyPlayer(id) {
   var index = _.findIndex(_players, function(p){ return p.id == id });
    _players = _.reject(_players, function(player){ return player.id == id; });
-  if(_selectedPlayerIndex == index) selectPlayer(_selectedPlayerIndex);
-  else if(_selectedPlayerIndex > index) selectPlayer(_selectedPlayerIndex-1);
 
   if(_players.length == 0) {
     _selectedPlayer = undefined;
     _selectedPlayerIndex = undefined;
+  }else{
+    if(_selectedPlayerIndex == index) selectPlayer(_selectedPlayerIndex);
+    else if(_selectedPlayerIndex > index) selectPlayer(_selectedPlayerIndex-1);
   }
 }
 

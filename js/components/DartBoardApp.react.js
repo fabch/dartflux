@@ -1,28 +1,43 @@
-var _              = require('underscore');
-var assign         = require('object-assign');
-var React          = require('react');
-var DartboardStore = require('../stores/DartboardStore');
-var Header         = require('../components/Header.react');
-var Footer         = require('../components/Footer.react');
-var PlayerItem     = require('../components/PlayerItem.react');
+var _                       = require('underscore');
+var assign                  = require('object-assign');
+var React                   = require('react/addons');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var ReactBootstrap          = require('react-bootstrap');
+var Grid                    = ReactBootstrap.Grid;
+
+var DartboardStore   = require('../stores/DartboardStore');
+var DartBoardActions = require('../actions/DartBoardActions');
+var Header           = require('../components/Header.react');
+var Footer           = require('../components/Footer.react');
+var PlayerItem       = require('../components/PlayerItem.react');
 
 
 function getDartboardState() {
   return {
-     players: DartboardStore.getPlayers()
-    ,selectedPlayer: DartboardStore.getSelectedPlayer()
-    ,selectedPlayerIndex: DartboardStore.getSelectedPlayerIndex()
-    ,zones: DartboardStore.getZones()
-    ,playerNum: DartboardStore.getPlayerNum()
+      players             : DartboardStore.getPlayers()
+     ,selectedPlayer      : DartboardStore.getSelectedPlayer()
+     ,selectedPlayerIndex : DartboardStore.getSelectedPlayerIndex()
+     ,zones               : DartboardStore.getZones()
+     ,playerNum           : DartboardStore.getPlayerNum()
   };
 }
 
-var debug = false;
+var DEBUG = false;
 function debugInfo(a,b){
   console.group('Props & State //DartboardApp');
-    console.info(a);
-    console.info(b);
+  console.info(a);
+  console.info(b);
   console.groupEnd();
+}
+
+function computePlayersItems(s){
+    return _.map(s.state.players, function(player,key) {
+      return <PlayerItem  key            = { player.id } 
+                          player         = { player } 
+                          selectedPlayer = { this.state.selectedPlayer } 
+                          zones          = { this.state.zones }
+                          onDeletePlayer = { this._onDeletePlayer } />
+    }, s);
 }
 
 var DartboardApp = React.createClass({
@@ -39,25 +54,36 @@ var DartboardApp = React.createClass({
     DartboardStore.removeChangeListener(this._onChange);
   },
 
-  render: function() {
-    if(debug) debugInfo(this.props,this.state);
+  render: function() { if(DEBUG) debugInfo(this.props,this.state);
+    var footer = (this.state.players.length > 1) ? <Footer /> : '';
+    var playersItems = computePlayersItems(this);
 
-    var playersItems = [];
-    _.map(this.state.players, function(player,key) {
-      playersItems.push(<PlayerItem key={key} player={player} selectedPlayer={this.state.selectedPlayer} zones={this.state.zones} />);
-    },this);
   	return (
-      <div className="container-fluid">
-        <Header zones={this.state.zones} playernum={this.state.playerNum} />
-        {playersItems}
-        <Footer />
-      </div>
+      <Grid fluid={ true }>
+        <Header zones={ this.state.zones } playernum={ this.state.playerNum } onCleanBoard={ this._onCleanBoard } />
+        <ReactCSSTransitionGroup transitionName="line"  transitionEnter={ true } transitionLeave={ false }>
+          { playersItems }
+        </ReactCSSTransitionGroup>
+        { footer }
+      </Grid>
   	);
   },
 
   /**
    * Event handler for 'change' events coming from the TodoStore
    */
+  _onDeletePlayer: function(playerid) {
+
+    var shortedPlayers = _.reject(this.state.players, function(player){ return player.id == playerid; });
+    this.setState({ players : shortedPlayers });
+    DartBoardActions.destroyPlayer(playerid);
+  },
+
+   _onCleanBoard: function(){
+    if(this.state.players.length > 0) DartBoardActions.cleanBoard();
+  },
+
+
   _onChange: function() {
     this.setState(getDartboardState());
   }
