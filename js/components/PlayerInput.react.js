@@ -36,8 +36,6 @@ var PlayerInput = React.createClass({
    */
   render: function() /*object*/ {
 
-    const innerButton = <Button>Ajouter</Button>;
-
     return (
       <Input type='text' 
           className =   {this.props.className}
@@ -47,7 +45,7 @@ var PlayerInput = React.createClass({
           onKeyDown =   {this._onKeyDown}
           value =     {this.state.value}
           autoFocus =   {true}
-          buttonAfter={this.props.buttonAfter} />
+          buttonAfter={<Button onClick={this._save}><i className="glyphicon glyphicon-plus"></i></Button>} />
     );
   },
 
@@ -56,7 +54,8 @@ var PlayerInput = React.createClass({
    * used in different ways.
    */
   _save: function() {
-    this.props.onSave(this.state.value);
+    var value = (this.state.value == '') ? 'Joueur '+this.props.playernum : this.state.value;
+    this.props.onSave(value);
     this.setState({
       value: ''
     });

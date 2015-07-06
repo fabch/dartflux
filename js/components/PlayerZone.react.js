@@ -1,6 +1,7 @@
-var React = require('react');
+var React            = require('react/addons');
 var ReactBootstrap = require('react-bootstrap');
 var Col = ReactBootstrap.Col;
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var ReactPropTypes = React.PropTypes;
 var DartBoardActions = require('../actions/DartBoardActions');
 
@@ -21,8 +22,14 @@ var PlayerZone = React.createClass({
   render: function() {
   	if(debug) debugInfo(this.props,this.state);
     var onClickFn = (this.props.click) ? this._click : null;
+    var classCanTakePoints = (this.props.canTakePoints) ? '' : 'hidden';
+    var classCanAddPoints  = (this.props.canAddPoints) ? '' : 'hidden';
     return (
-      <Col md={1} className="PlayerZone h2 text-center" onClick={onClickFn}>{this.props.value}</Col>
+        <Col md={1} key={this.props.zone} className="PlayerZone h2 text-center" onClick={onClickFn}>
+          <i className={'opponentIndicator glyphicon glyphicon-fire text-warning ' + classCanTakePoints}></i>
+          <i className={'opponentIndicator glyphicon glyphicon-screenshot text-info ' + classCanAddPoints}></i>
+          <span className="playerZoneIndicator">{this.props.value}</span>
+        </Col>
     );
   },
 
@@ -33,6 +40,7 @@ var PlayerZone = React.createClass({
   _click: function() {
     DartBoardActions.addPointTo(this.props.playerid, this.props.zone);
   }
+
 
 });
 
