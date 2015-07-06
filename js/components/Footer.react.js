@@ -21,7 +21,7 @@ var Header = React.createClass({
    * @param {string} name
    */
   _onClick: function() {
-    DartBoardActions.selectNextPlayer(this.props.selectedPlayer);
+    DartBoardActions.selectNextPlayer();
   }
 
 });

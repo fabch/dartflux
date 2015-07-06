@@ -11,7 +11,9 @@ function getDartboardState() {
   return {
      players: DartboardStore.getPlayers()
     ,selectedPlayer: DartboardStore.getSelectedPlayer()
+    ,selectedPlayerIndex: DartboardStore.getSelectedPlayerIndex()
     ,zones: DartboardStore.getZones()
+    ,playerNum: DartboardStore.getPlayerNum()
   };
 }
 
@@ -42,14 +44,13 @@ var DartboardApp = React.createClass({
 
     var playersItems = [];
     _.map(this.state.players, function(player,key) {
-      playersItems.push(<PlayerItem key={key} playerid={key} player={player} zones={this.state.zones} />);
+      playersItems.push(<PlayerItem key={key} player={player} selectedPlayer={this.state.selectedPlayer} zones={this.state.zones} />);
     },this);
-
   	return (
       <div className="container-fluid">
-        <Header zones={this.state.zones} />
+        <Header zones={this.state.zones} playernum={this.state.playerNum} />
         {playersItems}
-        <Footer selectedPlayer={this.state.selectedPlayer} />
+        <Footer />
       </div>
   	);
   },

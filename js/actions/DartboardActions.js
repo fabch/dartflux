@@ -36,6 +36,7 @@ var DartboardActions = {
 
   /**
    * @param  {string} id
+   * @param  {string} zone
    */
   addPointTo: function(id,zone) {
     AppDispatcher.dispatch({
@@ -55,16 +56,17 @@ var DartboardActions = {
     });
   },
 
-
-  /**
-   * @param  {string} id
-   */
-  selectNextPlayer: function(id) {
+  selectNextPlayer: function() {
     AppDispatcher.dispatch({
        actionType: DartboardConstants.PLAYER_SELECT_NEXT
-      ,id: id
     });
   },
+
+  cleanBoard: function() {
+    AppDispatcher.dispatch({
+       actionType: DartboardConstants.BOARD_CLEAN
+    });
+  }
 
 };
 
