@@ -10,7 +10,7 @@ var DartBoardActions = require('../actions/DartBoardActions');
 var Header           = require('../components/Header.react');
 var Footer           = require('../components/Footer.react');
 var PlayerItem       = require('../components/PlayerItem.react');
-
+var Cible            = require('../components/Cible.react');
 
 function getDartboardState() {
   return {
@@ -65,6 +65,7 @@ var DartboardApp = React.createClass({
           { playersItems }
         </ReactCSSTransitionGroup>
         { footer }
+        <Cible />
       </Grid>
   	);
   },

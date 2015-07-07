@@ -26,7 +26,7 @@ var PlayerZone = React.createClass({
     var classCanTakePoints = (this.props.canTakePoints) ? ''          : 'hidden';
     var classCanAddPoints  = (this.props.canAddPoints)  ? ''          : 'hidden';
     return (
-      <Col md={ 1 } key={ this.props.zone } className="PlayerZone h2 text-center" onClick={ onClickFn }>
+      <Col md={ 1 }  xs={ 1 } key={ this.props.zone } className="PlayerZone h2 text-center" onClick={ onClickFn }>
         <i className={ 'opponentIndicator glyphicon glyphicon-fire text-warning ' + classCanTakePoints }></i>
         <i className={ 'opponentIndicator glyphicon glyphicon-screenshot text-info ' + classCanAddPoints }></i>
         <span className="playerZoneIndicator">{ this.props.value }</span>

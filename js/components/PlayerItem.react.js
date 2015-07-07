@@ -52,14 +52,14 @@ var PlayerItem = React.createClass({
 
     return (
       <Row ref={ 'PlayerRow_' + this.state.player.id } className={ 'PlayerItem ' + classes }>
-            <Col md={ 3 } ref={ 'name_' + this.props.player.id } className="Name h2 text-right">
+            <Col md={ 3 } xs={ 3 } ref={ 'name_' + this.props.player.id } className="Name h2 text-right">
               <Button className="DeletePlayer btn btn-warning btn-sm pull-left" onClick={ this._removePlayer }>
                 <i className="glyphicon glyphicon-minus"></i>
               </Button>
               { this.props.player.name }
             </Col>
             { playerZones }
-            <Col md={ 2 } ref={ 'score_' + this.props.player.id } className="Score h2 text-center">{ this.props.player.score }</Col>
+            <Col md={ 2 }  xs={ 2 } ref={ 'score_' + this.props.player.id } className="Score h2 text-center">{ this.props.player.score }</Col>
       </Row>
     )
   },
