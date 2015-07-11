@@ -11,13 +11,23 @@
     "react": "^0.12.0"
   },
   "devDependencies": {
-    "react": "^0.13.0",
     "browserify": "^6.2.0",
     "envify": "^3.0.0",
+    "gulp": "^3.9.0",
+    "gulp-if": "^1.2.5",
+    "gulp-less": "^3.0.3",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.6",
     "jest-cli": "^0.4.3",
+    "react": "^0.13.0",
     "reactify": "^0.15.2",
     "uglify-js": "~2.4.15",
-    "watchify": "^2.1.1"
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^2.1.1",
+    "yargs": "^3.15.0"
   },
   "scripts": {
     "start": "watchify -o js/bundle.js -v -d js/app.js",

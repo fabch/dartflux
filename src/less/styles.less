@@ -1,0 +1,93 @@
+// BOOTSTRAP
+@bootstrap-less-url: "../../bower_components/bootstrap/less";
+@import "themes/darkly/variables.less";
+@import "@{bootstrap-less-url}/mixins.less";
+
+// Reset and dependencies
+@import "@{bootstrap-less-url}/normalize.less";
+@import "@{bootstrap-less-url}/print.less";
+@import "@{bootstrap-less-url}/glyphicons.less";
+
+// Core CSS
+@import "@{bootstrap-less-url}/scaffolding.less";
+@import "@{bootstrap-less-url}/type.less";
+@import "@{bootstrap-less-url}/code.less";
+@import "@{bootstrap-less-url}/grid.less";
+@import "@{bootstrap-less-url}/tables.less";
+@import "@{bootstrap-less-url}/forms.less";
+@import "@{bootstrap-less-url}/buttons.less";
+
+// Components
+@import "@{bootstrap-less-url}/component-animations.less";
+@import "@{bootstrap-less-url}/dropdowns.less";
+@import "@{bootstrap-less-url}/button-groups.less";
+@import "@{bootstrap-less-url}/input-groups.less";
+@import "@{bootstrap-less-url}/navs.less";
+@import "@{bootstrap-less-url}/navbar.less";
+@import "@{bootstrap-less-url}/breadcrumbs.less";
+@import "@{bootstrap-less-url}/pagination.less";
+@import "@{bootstrap-less-url}/pager.less";
+@import "@{bootstrap-less-url}/labels.less";
+@import "@{bootstrap-less-url}/badges.less";
+@import "@{bootstrap-less-url}/jumbotron.less";
+@import "@{bootstrap-less-url}/thumbnails.less";
+@import "@{bootstrap-less-url}/alerts.less";
+@import "@{bootstrap-less-url}/progress-bars.less";
+@import "@{bootstrap-less-url}/media.less";
+@import "@{bootstrap-less-url}/list-group.less";
+@import "@{bootstrap-less-url}/panels.less";
+@import "@{bootstrap-less-url}/responsive-embed.less";
+@import "@{bootstrap-less-url}/wells.less";
+@import "@{bootstrap-less-url}/close.less";
+
+// Components w/ JavaScript
+@import "@{bootstrap-less-url}/modals.less";
+@import "@{bootstrap-less-url}/tooltip.less";
+@import "@{bootstrap-less-url}/popovers.less";
+@import "@{bootstrap-less-url}/carousel.less";
+
+// Utility classes
+@import "@{bootstrap-less-url}/utilities.less";
+@import "@{bootstrap-less-url}/responsive-utilities.less";
+
+//ANIMATE.CSS
+@import (inline) "../../bower_components/animate.css/animate.css";
+
+// DART FONT
+@import (inline) "../css/dart.css";
+
+// APP CSS
+#dartboardapp ::selection { background: transparent; /* WebKit/Blink Browsers */}
+#dartboardapp ::-moz-selection { background: transparent; /* Gecko Browsers */}
+#header .form-group{ margin-bottom:0; margin-top:15px;}
+
+
+.PlayerItem .PlayerZone{ color:grey;}
+.PlayerItem .h2{ margin-top:20px; margin-bottom:20px; }
+.PlayerItem.selectedPlayer .PlayerZone { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR4nGP6DwABBQECz6AuzQAAAABJRU5ErkJggg==) left repeat-x; }
+.PlayerItem.selectedPlayer .Name{ background:#222 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR4nGP6DwABBQECz6AuzQAAAABJRU5ErkJggg==) right repeat-y; color:#0ce3ac; }
+.playerZoneIndicator{ background:#222; }
+.PlayerItem.selectedPlayer .Score{ 
+	background:#222; 
+	color:#0ce3ac; 
+}
+.PlayerItem.selectedPlayer .PlayerZone{ color:white;}
+
+
+.PlayerZone{ font-family: "dart"; cursor:pointer; }
+.BulleHeader{   font-family: 'Glyphicons Halflings'; }
+.opponentIndicator{ position:absolute; top:0; right:15px; font-size: medium}
+
+/*Animations*/
+.line-appear { opacity: 0; transition: opacity .3s ease-in; }
+.line-appear.line-appear-active { opacity: 1; }
+.line-enter { opacity: 0; transition: opacity .3s ease-in; }
+.line-enter.line-enter-active { opacity: 1; }
+.line-leave {  opacity: 1; transition: opacity .2s ease-in; }
+.line-leave.line-leave-active { opacity: 0; height:0; }
+
+.line2-appear { opacity: 0; transition: opacity .3s ease-in .3s; }
+.line2-appear.line2-appear-active { opacity: 1; }
+
+.PlayerItem .DeletePlayer{ opacity:0; border-radius:50%; transition: opacity .3s ease-in }
+.PlayerItem:hover .DeletePlayer{ opacity: 1; }
