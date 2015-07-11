@@ -1,0 +1,21 @@
+{
+  "name": "bower_components",
+  "version": "0.0.0",
+  "homepage": "https://github.com/fabch/dartflux",
+  "authors": [
+    "Fabien <fabien.chartrain@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "animate.css": "~3.3.0",
+    "bootstrap": "~3.3.5",
+    "sweetalert":"~1.0.1"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
